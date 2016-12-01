@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap</title>
+  <meta charset="utf-8">
+  <!--网站被带有不同屏幕分辨率的设备浏览，将width属性设置为device-width-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--使用cdn文件-->
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!--固定大小-->
+<div class="container">
+<!--浮动大小-->
+<!--
+<div class="container-fluid">
+-->
+    <div class="row">
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+      <div class="col-md-1">.col-md-1</div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">.col-md-8</div>
+      <div class="col-md-4">.col-md-4</div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4">.col-md-4</div>
+      <div class="col-md-4">.col-md-4</div>
+      <div class="col-md-4">.col-md-4</div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">.col-md-6</div>
+      <div class="col-md-6">.col-md-6</div>
+    </div>
+</div>
+
+</br>
+
+<!--嵌套列-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>第一列</h3>
+      <p>可以内容中嵌套默认的网格</p>
+    </div>
+    <div class="col-md-4">
+      <h3>第二列：分为四块内容</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>超小设备手机（<768px）</h3>
+            <p>.col-xs-</p>
+          </div>
+          <div class="col-md-4">
+            <h3> 小型设备平板电脑（≥768px）</h3>
+            <p>.col-sm-</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>中型设备台式电脑（≥992px）</h3>
+            <p>.col-md-</p>
+          </div>
+          <div class="col-md-4">
+            <h3>大型设备台式电脑（≥1200px）</h3>
+            <p>.col-lg-</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

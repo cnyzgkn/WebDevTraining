@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+<script src='lib/jquery-3.1.0.min.js'></script>
+<script>
+  $(document).ready(function() {
+    $("#getMessage").on("click", function(){
+      $.getJSON("json/cats.json", function(json) {
+        //simply display JSON data
+        //$(".message").html(JSON.stringify(json));
+        //aquire JSON content and display
+        /*
+        var html = "";
+        json.forEach(function(val) {
+          var keys = Object.keys(val);
+          html += "<div class = 'cat'>";
+          keys.forEach(function(key) {
+          html += "<b>" + key + "</b>: " + val[key] + "<br>";
+          });
+        html += "</div><br>";
+        });
+      $(".message").html(html);
+      */
+      //show image from imageLink in JSON
+      /*
+      var html = "";
+      json.forEach(function(val) {
+        html += "<div class = 'cat'>";
+        html += "<img src = '" + val.imageLink + "'>";
+        html += "</div>";
+        });
+        $(".message").html(html);
+        */
+      });
+    });
+  });
+</script>
+</head>
+
+<div class="container-fluid">
+  <div class = "row text-center">
+    <h2>Cat Photo Finder</h2>
+  </div>
+  <div class = "row text-center">
+    <div class = "col-xs-12 well message">
+      The message will go here
+    </div>
+  </div>
+  <div class = "row text-center">
+    <div class = "col-xs-12">
+      <button id = "getMessage" class = "btn btn-primary">
+        Get Message
+      </button>
+    </div>
+  </div>
+</div>

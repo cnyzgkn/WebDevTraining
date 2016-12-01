@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+var MyComponent = React.createClass({
+  handleClick: function() {
+    this.refs.TextInput.focus();
+  },
+
+  /*根据React的设计，所有的DOM变动，都先在虚拟DOM。只有当它插入文档以后才会变成真实的DOM。
+  根据React的设计，所有的DOM变动，都先在虚拟DOM上发生，然后再将实际发生变动的部分反映在真实DOM上，这种算法叫做DOM diff，可以极大提高网页的性能表现。
+  下面代码中MyComponent的子节点有一个文本输入框用于获取用户的输入，这时就必须获取真实的DOM节点，虚拟DOM是拿不到用户输入的，这时就要用到ref属性
+  */
+  render: function() {
+    return (
+      <div>
+        <input type="text" ref="TextInput" />
+        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <MyComponent />,
+  document.getElementById('example')
+);
+    </script>
+  </body>
+</html>
