@@ -1,4 +1,3 @@
-'use strict'
 import {firstName, lastName, year} from './person';
 //整体加载模块
 //import * as circle from './circle';
