@@ -1,7 +1,3 @@
-/*
-* 围绕某个 x,y,z轴测试
-*/
-
 var renderer;
 var stats;
 
@@ -24,7 +20,7 @@ function initThree() {
 
 var camera;
 function initCamera() {
-    camera = new THREE.PerspectiveCamera(45, width / height, 1, 500000);
+    camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000000);
     camera.position.x = 20000;
     camera.position.y = 20000;
     camera.position.z = 20000;
@@ -46,12 +42,11 @@ function initScene() {
 var light;
 function initLight() {
     light = new THREE.AmbientLight(0xFF0000);
-    light.position.set(50000, 50000, 50000);
+    light.position.set(100000, 100000, 100000);
     scene.add(light);
 }
 
-
-function readJSON() {
+function initObjectfromJSON() {
     $.ajaxSettings.async = false; 
     $.getJSON("result.json",function(json){
         $.each(json, function(ifcObjectIndex, ifcObject){ 
@@ -61,7 +56,6 @@ function readJSON() {
                 
                 var noVertices = ifcObject["noVertices"];
                 var vertices = ifcObject["vertices"];
-                //document.writeln(vertices);
                 var indicesForFaces = ifcObject["indicesForFaces"];
                 var noPrimitivesForFaces = ifcObject["noPrimitivesForFaces"];
                 //vertices
@@ -94,7 +88,7 @@ function readJSON() {
                 geometry.computeVertexNormals();
 
                 var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors} );
-                let mesh = new THREE.Mesh( geometry,material);
+                var mesh = new THREE.Mesh( geometry,material);
                 mesh.position = new THREE.Vector3(0,0,0);
                 scene.add(mesh);
             }
@@ -107,11 +101,11 @@ function threeStart() {
     initCamera();
     initScene();
     initLight();
-    readJSON();
+    initObjectfromJSON();
     animation();
 }
 
-/*
+
 function rotateFunction()
 {
     mesh.rotateX(0.02);
@@ -125,27 +119,14 @@ function rotateProperty()
     mesh.rotation.y += 0.01;
     mesh.rotation.z += 0.01;
 }
-*/
+
 
 // 帧循环、游戏循环
 function animation()
 {
-    //rotateProperty();
-    //rotateFunction();
     renderer.render(scene, camera);
-    //requestAnimationFrame(animation);
-    //stats.update();
+    requestAnimationFrame(animation);
+    stats.update();
 }
 
 threeStart();
-
-function testJSON() {
-    $.ajaxSettings.async = false; 
-    $.getJSON("result.json",function(json){
-        //$.each(json, function(ifcObjectIndex, ifcObject){ 
-           document.writeln("getJSON finished!") ;
-        //});
-    });
-}
-
-//testJSON();
