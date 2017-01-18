@@ -1,0 +1,148 @@
+<h1>Web测试内容</h1>
+<br>1. 界面测试
+<br>2. 输入框测试（文本、数字、日期、特殊字符等）
+<br>3. 搜索测试
+<br>4. 注册登陆模块测试
+<br>5. 图片上传下载测试
+<br>6. 数据增删查改测试
+<br>7. 链接测试
+<br>8. 特殊键如Back、Tab、Enter、Refresh等测试
+<br>9. 易用性测试
+<br>10. 兼容性测试（系统、浏览器）
+<br>11. 安全测试 （SQL注入、XSS等）
+<br>12. 性能测试. （响应时间、吞吐量、资源占用）
+
+<h1>主流Web测试框架</h1>
+<table border="1">
+  <tr>
+    <th>名称</th>
+    <th>简介</th>
+    <th>特点</th>
+    <th>支持语言</th>
+    <th>示例</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>PhantomJS/SlimerJS/CasperJS</td>
+    <td>无界面的webkit浏览器</td>
+    <td>PhantomJS基于Webkit内核
+    <br>SlimerJS基于FireFox的Gecko内核
+    <br>CasperJS同时支持上述两者并提供测试框架</td>
+    <td>Javascript</td>
+    <td>
+    	<code>
+    	<br>var webpage = require('webpage').create();
+      <br>webpage.open('http://www.baidu.com') // 打开一个网页
+      <br>.then(function() { // 页面加载完成后执行
+      <br>&nbsp//保存页面截屏
+      <br>&nbspwebpage.viewportSize = {
+      <br>&nbsp  width: 650,
+      <br>&nbsp  height: 320
+      <br>&nbsp};
+      <br>&nbspwebpage.render('page.png', {
+      <br>&nbsp onlyViewport: true
+      <br>&nbsp});
+      <br>&nbsp//再打开一个网页
+      <br>&nbspreturn webpage.open('http://bbs.meizu.com');
+      <br>&nbsp})
+      <br>.then(function() {
+      <br>&nbsp// 点击某个位置
+      <br>&nbspwebpage.sendEvent("click", 5, 5, 'left', 0);
+      <br>&nbspslimer.exit(); //退出
+      <br>});
+		  </code>
+	  </td>
+  </tr>
+
+  <tr>
+    <td>Selenium</td>
+    <td>使用最广的功能测试框架</td>
+    <td>使用浏览器原生API封装不同的WebDriverAPI</td>
+    <td>官方（Python, Java, C#，Ruby）<br>非官方（Javascript, Perl)</td>
+    <td>
+      <code>
+      <br>#coding=utf-8
+      <br>from selenium import webdriver
+      <br>import time
+      <br>browser = webdriver.Firefox()
+      <br>url= 'http://www.baidu.com'
+      <br>#通过get方法获取当前URL打印
+      <br>print "now access %s" %(url)
+      <br>browser.get(url)
+      <br>time.sleep(2)
+      <br>browser.find_element_by_id("kw").send_keys("selenium")
+      <br>browser.find_element_by_id("su").click()
+      <br>time.sleep(3)
+      <br>browser.quit()
+      </code>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Nightwatch.js</td>
+    <td>基于node.js和Selenium WebDriver的测试框架</td>
+    <td>只需使用Javascript和CSS选择器，不需要初始化其他对象和类</td>
+    <td>Javascript</td>
+    <td>
+      <code>
+      <br>module.exports = {
+      <br>&nbsptestBaidu : function (client) {
+      <br>&nbspclient
+      <br>&nbsp&nbsp.url('http://www.baidu.com')
+      <br>&nbsp&nbsp.waitForElementVisible('body', 1000)
+      <br>&nbsp&nbsp.elements('css selector', '#index-container ul.features li', function (result) {
+      <br>&nbsp&nbsp  for (var i = 0; i < result.value.length; i++) {
+      <br>&nbsp&nbsp    var element = result.value[i];
+      <br>&nbsp&nbsp    var selector = '#index-container ul.features li:nth-child(' + (element.ELEMENT ) +') em';
+      <br>&nbsp&nbsp    client.verify.cssClassPresent(selector, 'glyphicon');
+      <br>&nbsp&nbsp  }
+      <br>&nbsp&nbsp});
+      <br>&nbsp}
+      <br>};
+      </code>
+    </td>
+  </tr>
+</table>
+
+<h1>安装Selenium+WebDriver测试框架</h1>
+<br>1. 安装python3.5 区分python2/3: py -2 or -3 *.py<br>
+<br>2. 安装selenimu: pip install selenium<br>
+<br>3. 下载安装WebDriver: <br>
+<table border="1">
+  <tr>
+    <td>Chrome</td>
+    <td><a href="http://chromedriver.storage.googleapis.com/index.html">chromedriver(.exe)</a></td>
+  </tr>
+  <tr>
+    <td>Internet Explorer</td>
+    <td><a href="http://selenium-release.storage.googleapis.com/index.html">IEDriverServer.exe</a></td>
+  </tr>
+  <tr>
+    <td>Edge</td>
+    <td><a href="http://go.microsoft.com/fwlink/?LinkId=619687">MicrosoftWebDriver.msi</a></td>
+  </tr>
+  <tr>
+    <td>Firefox 47+</td>
+    <td><a href="https://github.com/mozilla/geckodriver/releases/">geckodriver(.exe)</a></td>
+  </tr>
+  <tr>
+    <td>PhantomJS</td>
+    <td><a href="http://phantomjs.org/">phantomjs(.exe)</a></td>
+  </tr>
+  <tr>
+    <td>Opera</td>
+    <td><a href="https://github.com/operasoftware/operachromiumdriver/releases">operadriver(.exe)</a></td>
+  </tr>
+  <tr>
+    <td>Safari</td>
+    <td><a href="https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-DontLinkElementID_28">safaridriver</a></td>
+  </tr>
+</table>
+<br>4. 添加WebDriver和浏览器目录到PATH环境变量<br>
+<img src="addPath.png"></img>
+<br>5. 安装其他python库如pip install Pillow<br>
+
+<h1>注意事项</h1>
+<br>1. FireFox暂不支持ActionChain<br>
+<br>https://github.com/mozilla/geckodriver/issues/233<br>
