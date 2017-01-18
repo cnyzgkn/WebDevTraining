@@ -25,9 +25,9 @@ function initThree() {
 var camera;
 function initCamera() {
     camera = new THREE.PerspectiveCamera(45, width / height, 1, 500000);
-    camera.position.x = 30000;
-    camera.position.y = 30000;
-    camera.position.z = 30000;
+    camera.position.x = 20000;
+    camera.position.y = 20000;
+    camera.position.z = 20000;
     camera.up.x = 1;
     camera.up.y = 1;
     camera.up.z = 1;
@@ -46,7 +46,7 @@ function initScene() {
 var light;
 function initLight() {
     light = new THREE.AmbientLight(0xFF0000);
-    light.position.set(100000, 100000, 200000);
+    light.position.set(50000, 50000, 50000);
     scene.add(light);
 }
 
@@ -56,7 +56,6 @@ function readJSON() {
     $.getJSON("result.json",function(json){
         $.each(json, function(ifcObjectIndex, ifcObject){ 
             if(ifcObject["noVertices"] !== 0)
-            //if(ifcObject["globalId"] === "3KuQVjTrvCR9JuCewVbNQn")
             {
                 var geometry = new THREE.Geometry();
                 
@@ -103,50 +102,11 @@ function readJSON() {
     });
 }
 
-var cube;
-var mesh;
-function initObject() { 
-    var geometry = new THREE.Geometry();
-
-    var ver_0 = new THREE.Vector3(9000, -3000, 0);
-    var ver_1 = new THREE.Vector3(-9000, 3000, 0);
-    var ver_2 = new THREE.Vector3(0, 6000, 0);
-    var ver_3 = new THREE.Vector3(0, 0, 9000);
-    geometry.vertices.push(ver_0);
-    geometry.vertices.push(ver_1);
-    geometry.vertices.push(ver_2);
-    geometry.vertices.push(ver_3);
-
-    var face_0 = new THREE.Face3(0, 1, 2);
-    var face_1 = new THREE.Face3(0, 2, 3);
-    var face_2 = new THREE.Face3(0, 1, 3);
-    var face_3 = new THREE.Face3(2, 1, 3);
-    geometry.faces.push(face_0);
-    geometry.faces.push(face_1);
-    geometry.faces.push(face_2);
-    geometry.faces.push(face_3);
-
-    for ( let i = 0; i < geometry.faces.length; i++ ) {
-        geometry.faces[i].color.set(0xFF0000);
-    }
-
-    //calculate norm for lighting
-    geometry.computeFaceNormals();
-    geometry.computeVertexNormals();
-
-    var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors} );
-    mesh = new THREE.Mesh( geometry,material);
-    mesh.position = new THREE.Vector3(0,0,0);
-    scene.add(mesh);
-}
-
-
 function threeStart() {
     initThree();
     initCamera();
     initScene();
     initLight();
-    //initObject();
     readJSON();
     animation();
 }
@@ -178,3 +138,14 @@ function animation()
 }
 
 threeStart();
+
+function testJSON() {
+    $.ajaxSettings.async = false; 
+    $.getJSON("result.json",function(json){
+        //$.each(json, function(ifcObjectIndex, ifcObject){ 
+           document.writeln("getJSON finished!") ;
+        //});
+    });
+}
+
+//testJSON();

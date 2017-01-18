@@ -8,7 +8,7 @@ class Point {
   }
 
   static classMethod() {
-  	return "classMethod";
+  	return "static classMethod";
   }
 
   toString() {

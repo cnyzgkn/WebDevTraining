@@ -27,3 +27,8 @@ function insert(value) {
 }
 // 等同于
 insert(2).into([1, 3]).after(1); //[1, 2, 3]
+
+//Joke: 新运算符 趋近于 -->
+var n = 10;
+while(n-->1)
+	document.writeln(n);

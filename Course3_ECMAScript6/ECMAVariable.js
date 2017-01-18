@@ -8,16 +8,17 @@
 document.writeln("b == " + b); 
 
 //适合用于for循环内
-for (let i = 0; i < 10; i++) {}
-//document.writeln("a == " + a);  //ReferenceError: i is not defined
+for (var i = 0; i < 10; i++) {}
+document.writeln("i == " + i);  //ReferenceError: i is not defined
 
 //避免变量提升
 document.writeln("foo == " + foo);  // 输出undefined
-//document.writeln("foo == " + foo);   // 报错ReferenceError
+document.writeln("bar == " + bar);   // 报错ReferenceError
 
 var foo = 2;
 let bar = 2;
 
+/*
 //解构Destructuring
 let [head, ...tail] = [1, 2, 3, 4];
 document.writeln("head == " + head);  // 1
@@ -35,3 +36,4 @@ for (i = 0; i < len; i++) {
 
 // ES6
 //const itemsCopy = [...items];
+*/

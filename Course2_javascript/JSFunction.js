@@ -7,8 +7,13 @@ function add(x, y)
 
 function globalFD() {
   //inside another function
-  function innerFD() {}
+  return function innerFD() {
+    document.writeln("innerFD");
+  }
 }
+
+var x = globalFD();
+document.writeln(x.innerFD());
 
 document.writeln(add(1,2));
 document.writeln(add.length);
